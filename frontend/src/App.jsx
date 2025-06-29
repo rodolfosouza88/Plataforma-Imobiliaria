@@ -1,11 +1,11 @@
-/* eslint-disable no-unused-vars */
-import { useState } from "react";
+import React from "react";
+import ListaImoveis from "./components/ListaImoveis";
 
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <ListaImoveis />
+    </div>
   );
 }
 
