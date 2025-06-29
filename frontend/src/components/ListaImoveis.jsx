@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DetalhesImovel from "./DetalhesImovel";
@@ -51,49 +52,61 @@ export default function ListaImoveis() {
     <div className="p-4 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-6 text-center">Lista de Imóveis</h1>
       <ul>
-        {imoveis.map((imovel) => (
-          <li
-            key={imovel.id}
-            className="border rounded p-4 mb-4 shadow hover:shadow-lg transition cursor-default"
-          >
-            <h2
-              onClick={() => setIdDetalhes(imovel.id)}
-              className="font-semibold text-xl text-blue-600 hover:underline cursor-pointer"
+        {imoveis.map((imovel) => {
+          // Lógica para definir a imagem conforme o título ou atributo 'foto'
+          let imagem = "imovel-sem-foto.png"; // padrão
+
+          if (imovel.foto) {
+            imagem = imovel.foto; // se foto existir no backend, usa ela
+          } else if (/sala comercial/i.test(imovel.titulo)) {
+            imagem = "sala-comercial.jpg";
+          } else if (/apartamento/i.test(imovel.titulo)) {
+            imagem = "apartamento.jpg";
+          } else if (/casa|mansão|cobertura|residencial/i.test(imovel.titulo)) {
+            imagem = "casa.jpg";
+          }
+
+          return (
+            <li
+              key={imovel.id}
+              className="border rounded p-4 mb-4 shadow hover:shadow-lg transition cursor-default"
             >
-              {imovel.titulo}
-            </h2>
-            <p className="mt-1 text-gray-700">{imovel.descricao}</p>
-            <p className="mt-1">
-              <strong>Valor:</strong>{" "}
-              {typeof imovel.valor === "number"
-                ? `R$ ${imovel.valor.toLocaleString("pt-BR")}`
-                : imovel.valor}
-            </p>
-            <p>
-              <strong>Finalidade:</strong> {imovel.finalidade}
-            </p>
-            <div className="mt-4 flex space-x-2">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleEditar(imovel.id);
-                }}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
+              <img
+                src={`http://localhost:8000/img/${imagem}`}
+                alt={`Imagem do imóvel ${imovel.titulo}`}
+                className="w-full h-48 object-cover rounded mb-4"
+              />
+              <h2
+                onClick={() => setIdDetalhes(imovel.id)}
+                className="font-semibold text-xl text-blue-600 hover:underline cursor-pointer"
               >
-                Editar
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleExcluir(imovel.id);
-                }}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
-              >
-                Excluir
-              </button>
-            </div>
-          </li>
-        ))}
+                {imovel.titulo}
+              </h2>
+              <p className="mt-1 text-gray-700">{imovel.descricao}</p>
+              <p className="mt-1">
+                <strong>Valor:</strong> R${" "}
+                {imovel.valor.toLocaleString("pt-BR")}
+              </p>
+              <p>
+                <strong>Finalidade:</strong> {imovel.finalidade}
+              </p>
+              <div className="mt-4 flex space-x-2">
+                <button
+                  onClick={() => handleEditar(imovel.id)}
+                  className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded"
+                >
+                  Editar
+                </button>
+                <button
+                  onClick={() => handleExcluir(imovel.id)}
+                  className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+                >
+                  Excluir
+                </button>
+              </div>
+            </li>
+          );
+        })}
       </ul>
 
       {idDetalhes && (
