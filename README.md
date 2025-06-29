@@ -100,7 +100,7 @@ Página para cadastrar novos imóveis
 Responsivo em desktop, tablet e mobile 📱
 
 🔗 Deploys
-🖥️ Front-end (Vercel): https://plataforma-imobiliaria.vercel.app
+🖥️ Front-end (Vercel): https://plataforma-imobiliaria-c2ouawzkm-rodolfo-souzas-projects.vercel.app/
 
 🌐 Back-end: Localhost via Laravel (http://localhost:8000/api/imoveis)
 
