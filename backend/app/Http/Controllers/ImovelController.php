@@ -21,15 +21,28 @@ class ImovelController extends Controller
             'titulo' => 'required|string|max:255',
             'descricao' => 'required|string',
             'endereco' => 'required|string',
-            'finalidade' => 'required|in:Venda,Locação',
+            'finalidade' => 'required|in:venda,locacao',
             'valor' => 'required|numeric',
             'quartos' => 'required|integer|min:0',
             'banheiros' => 'required|integer|min:0',
-            'garagem' => 'required|boolean',
+            'garagem' => 'required|integer|min:0',
             'corretor' => 'required|string|max:255',
         ]);
 
-        $imovel = Imovel::create($request->all());
+        $dados = $request->all();
+
+        // Definindo imagem com base em lógica simples
+        if (str_contains(strtolower($dados['titulo']), 'apartamento')) {
+            $dados['foto'] = 'apartamento.jpg';
+        } elseif (str_contains(strtolower($dados['titulo']), 'sala')) {
+            $dados['foto'] = 'sala-comercial.jpg';
+        } elseif (str_contains(strtolower($dados['titulo']), 'casa')) {
+            $dados['foto'] = 'casa.jpg';
+        } else {
+            $dados['foto'] = 'imovel-sem-foto.jpg';
+        }
+
+        $imovel = Imovel::create($dados);
 
         return response()->json($imovel, 201);
     }
@@ -59,15 +72,22 @@ class ImovelController extends Controller
             'titulo' => 'sometimes|required|string|max:255',
             'descricao' => 'sometimes|required|string',
             'endereco' => 'sometimes|required|string',
-            'finalidade' => 'sometimes|required|in:Venda,Locação',
+            'finalidade' => 'sometimes|required|in:venda,locacao',
             'valor' => 'sometimes|required|numeric',
             'quartos' => 'sometimes|required|integer|min:0',
             'banheiros' => 'sometimes|required|integer|min:0',
-            'garagem' => 'sometimes|required|boolean',
+            'garagem' => 'sometimes|required|integer|min:0',
             'corretor' => 'sometimes|required|string|max:255',
         ]);
 
-        $imovel->update($request->all());
+        $dados = $request->all();
+
+        // Se a imagem não for enviada na atualização, manter a atual ou definir padrão
+        if (!isset($dados['foto']) || empty($dados['foto'])) {
+            $dados['foto'] = $imovel->foto ?? 'imovel-sem-foto.jpg';
+        }
+
+        $imovel->update($dados);
 
         return response()->json($imovel);
     }
