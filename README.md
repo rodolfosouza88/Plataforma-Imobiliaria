@@ -7,12 +7,6 @@
 
 ---
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/your-username/project-image.png" alt="Projeto Imóveis" width="600" />
-</p>
-
----
-
 ## 🚀 Sobre o Projeto
 
 Aplicação completa full stack para gerenciamento de imóveis, composta por:
