@@ -53,13 +53,6 @@ Projeto desenvolvido para demonstrar habilidades técnicas e capacidade de const
 
 ---
 
-## 🎬 Demonstração
-
-![Gif da aplicação](https://media.giphy.com/media/xyz/giphy.gif)  
-_(Coloque aqui um link para demonstração ou vídeo da aplicação)_
-
----
-
 ## ⚙️ Como Rodar o Projeto Localmente
 
 ### Backend
