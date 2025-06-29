@@ -2,7 +2,7 @@
 
 #  **Projeto Completo Finalizado**
 
-```md
+
 # 🏡 Gerenciador Completo de Imóveis - Projeto Full Stack
 
 ---
@@ -71,4 +71,4 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan serve
-```
+
