@@ -99,6 +99,13 @@ Página para cadastrar novos imóveis
 Responsivo em desktop, tablet e mobile 📱
 
 🌐 Back-end: Localhost via Laravel (http://localhost:8000/api/imoveis)
+:
+
+📚 Documentação da API:
+Acesse a documentação completa e pública da API RESTful pelo Postman:
+👉 https://documenter.getpostman.com/view/46276290/2sB34ZpipP
+
+
 
 👨‍💻 Autor
 Rodolfo Vasconcellos de Souza

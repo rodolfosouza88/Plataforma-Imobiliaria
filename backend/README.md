@@ -37,5 +37,13 @@ composer install
 cp .env.example .env
 php artisan key:generate
 php artisan migrate
-php artisan serve
+php artisan
+
+:
+
+📚 Documentação da API:
+Acesse a documentação completa e pública da API RESTful pelo Postman:
+👉 https://documenter.getpostman.com/view/46276290/2sB34ZpipP
+
+
 ```
